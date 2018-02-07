@@ -1,0 +1,38 @@
+
+<!DOCTYPE HTML>
+<meta charset="UTF-8">
+<!-- Unicode support required for non ASCII characters in other languages -->
+
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="styles.css" />
+
+<head>
+    <title>easyTranslate </title>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <form>
+        <select>
+        <option disabled value = "0"> Language to translate to </option>
+        <option value = "1"> Language 1</option>
+        <option value = "2"> Language 2</option>
+        <option value = "3"> Language 3</option>
+        </select>
+        <select>
+        <option disabled value = "0"> Language to translate from </option>
+        <option value = "1"> Language 1</option>
+        <option value = "2"> Language 2</option>
+        <option value = "3"> Language 3</option>
+        </select>
+        <p>
+                Text to translate
+                <textarea  placeholder="Text to translate"></textarea>
+                <textarea  placeholder="Translated text will appear here"></textarea>
+                <button  id="translateButton" type="button"> Translate </button>
+    </p>
+    </form>
+</body>
+
+</html>
+<script src="index.js"></script>
