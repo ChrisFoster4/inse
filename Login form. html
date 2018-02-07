@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+
+<form action="action_page.php">
+  </div>
+
+  <head>
+      <link rel="inse" type="text/css" href="inse.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>EasyTranslate</title>
+  </head>
+
+  <form action="action_page.php" style="border:1px solid #ccc">
+    <div class="container">
+      <h1>EasyTranslate</h1>
+
+  <div class="container">
+    <label for="uname"><b>Enter Email:</b></label>
+    <input type="text" placeholder="Email Address" name="uname" required>
+
+    <label for="psw"><b>Enter Password:</b></label>
+    <input type="password" placeholder="Password" name="psw" required>
+
+    <button type="submit">Login</button>
+    <button type="submit">Sign-Up</button>
+    <button type="submit">Continue as Guest</button>
+    <label>
+
+    </label>
+  </div>
+</form>
