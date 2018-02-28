@@ -1,38 +1,61 @@
 
 <!DOCTYPE HTML>
 <meta charset="UTF-8">
-<!-- Unicode support required for non ASCII characters in other languages -->
-
 <html lang="en">
-<link rel="stylesheet" type="text/css" href="styles.css" />
+<link rel="stylesheet" type="text/css" href="style.css" />
+<script src="index.js"></script>
 
 <head>
-    <title>easyTranslate </title>
-    <meta charset="UTF-8" />
+  <title>easyTranslate </title>
+  <meta charset="UTF-8" />
 </head>
 
 <body>
-    <form>
-        <select>
-        <option disabled value = "0"> Language to translate to </option>
-        <option value = "1"> Language 1</option>
-        <option value = "2"> Language 2</option>
-        <option value = "3"> Language 3</option>
-        </select>
-        <select>
-        <option disabled value = "0"> Language to translate from </option>
-        <option value = "1"> Language 1</option>
-        <option value = "2"> Language 2</option>
-        <option value = "3"> Language 3</option>
-        </select>
-        <p>
-                Text to translate
-                <textarea  placeholder="Text to translate"></textarea>
-                <textarea  placeholder="Translated text will appear here"></textarea>
-                <button  id="translateButton" type="button"> Translate </button>
-    </p>
-    </form>
+  <main>
+
+  <nav>NAVIGATIONBAR TESTING THE LENGTH LOL HELLO???</nav>
+
+  <article>
+
+    <aside>
+        <p>Input Language:</p>
+        <p>Output Language:</p>
+        <p>Input Text:</p>
+    </aside>
+
+    <section>
+      <form>
+        <div class="form">
+          <select id="inputLang">
+            <option disabled value = "0"> Language to translate to </option>
+            <option value = "1">Language 1</option>
+            <option value = "2">Language 2</option>
+            <option value = "3">Language 3</option>
+          </select>
+        </div>
+        <div class="form">
+          <select id="outputLang">
+            <option disabled value = "0"> Language to translate from </option>
+            <option value = "1">Language 1</option>
+            <option value = "2">Language 2</option>
+            <option value = "3">Language 3</option>
+          </select>
+        </div>
+        <div class="form">
+          <textarea id="inputArea"  placeholder="Text to translate"></textarea>
+        </div>
+        <div class="form">
+          <textarea id="outputArea"  placeholder="Translated text will appear here"></textarea>
+        </div>
+        <div class="form">
+          <button  id="translateButton" type="button"> Translate </button>
+        </div>
+      </form>
+    </section>
+
+  </article>
+
+  </main>
 </body>
 
 </html>
-<script src="index.js"></script>
