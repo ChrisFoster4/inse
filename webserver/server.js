@@ -1,7 +1,9 @@
 'use strict'
 const express = require('express');
 const app = express();
+const mysql=require('mysql2/promise');
 const translatorMethods = require('../translator/translator.js');
+const databaseMethods = require('../database/databaseMethods.js');
 
 app.use('/', express.static('webpages', { //TODO this doesn't work if node is called from a different directory i.e. `node INSE/webserver/server.js`
     extensions: ['html']
