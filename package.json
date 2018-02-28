@@ -1,0 +1,24 @@
+{
+  "name": "inse",
+  "version": "1.0.0",
+  "description": "easyTranslate project for INSE",
+  "main": "webserver/server.js",
+  "scripts": {
+    "test": "cd webserver && node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrisfoster4/inse.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chrisfoster4/inse/issues"
+  },
+  "homepage": "https://github.com/chrisfoster4/inse#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "google-translate-api": "^2.3.0",
+    "mysql2": "^1.5.2"
+  }
+}
