@@ -1,6 +1,5 @@
 # To Do
-- [ ] Work on front end - index.html and styles.css.
-- [ ] Make user click translate send request to Node server.
-- [ ] Make Node server transfer requests to Google API.
+- [ ] Work on front end
+- [ ] Look at TODO's in databaseMethods.js
 - [ ] Look for TODO within code.
 - [ ] Add other tasks to this list.
