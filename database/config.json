@@ -3,7 +3,6 @@
     "host": "localhost",
     "user": "root",
     "password": "",
-    "database": "testDatabase",
-    "table": "testTable"
+    "database": "easyTranslate"
   }
 }
