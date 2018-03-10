@@ -20,6 +20,7 @@
     "express": "^4.16.2",
     "google-translate-api": "^2.3.0",
     "mysql2": "^1.5.2",
-    "sha256": "^0.2.0"
+    "sha256": "^0.2.0",
+    "simple-google-openid": "^0.2.2"
   }
 }
