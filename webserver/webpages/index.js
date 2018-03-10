@@ -8,6 +8,8 @@ document.getElementById('logoutButton').addEventListener('click', signOut);
  This function (submitTextToTranslate) should take what the user entered in the inputArea textarea and pass it to the server for translation. The result of the translation should then be put into the outputArea textarea. If the user is signed in then the result of the translation should also be sent to the server to be put into the database.
 */
 async function submitTextToTranslate(){
+    let userEmail = await callServer();
+    console.log("User email= "+userEmail);
     console.log("submitTextToTranslate called");
     let contentsOfTextBox = document.getElementById('inputArea').value; //This is the text that will be translated
     let languageToTranslateTo = getLanguageToTranslateToo();
@@ -17,10 +19,11 @@ async function submitTextToTranslate(){
         const response = await fetch(url);
         if (response.ok) {
             let jsonResponse = await response.json();
+            console.log(jsonResponse);
             console.log(jsonResponse.translatedText);
             document.getElementById('outputArea').value = jsonResponse.translatedText;
-            if (window.userID){
-                console.log("User is signed in.With ID: " + window.userID);
+            if (userEmail){
+                console.log("User is signed in.With ID: " + userEmail);
             }else {
                 console.log("User is not signed in");
             }
@@ -73,19 +76,60 @@ function getLanguageToTranslateFrom() {
 function onSignIn(googleUser) {
   window.userID = googleUser.getBasicProfile().getId();
   var profile = googleUser.getBasicProfile();
-  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+  // console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  // console.log('Name: ' + profile.getName());
+  // console.log('Image URL: ' + profile.getImageUrl());
+  // console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 }
 
 /*
  This function (signOut) is only ran when the uses presses on the "logout" button.The function should sign out the user and set a global variable to allow other functions to check if the user is signed in.
 */
-function signOut() {
+async function signOut() {
+  await gapi.auth2.getAuthInstance().signOut();
     window.userID = undefined;
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
       console.log('User signed out.');
+      callServer();
     });
   }
+
+//Bellow two functions are from the manual for the simple-google-openid package avaliable at: //https://www.npmjs.com/package/simple-google-openid
+async function callServer() {
+  const token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token;
+
+  const fetchOptions = {
+    credentials: 'same-origin',
+    method: 'GET',
+    headers: { 'Authorization': 'Bearer ' + token },
+  };
+  const response = await fetch('/api/hello', fetchOptions);
+  if (!response.ok) {
+    // handle the error
+    console.log("Server error:\n" + response.status);
+    return;
+  }
+
+  // handle the response
+  const data = await response.text();
+  // console.log('setting text content: ' + data);
+  // console.log(data);
+  return data;
+
+}
+
+// react to computer sleeps, get a new token; gapi doesn't do this reliably
+// adapted from http://stackoverflow.com/questions/4079115/can-any-desktop-browsers-detect-when-the-computer-resumes-from-sleep/4080174#4080174
+(function () {
+  const CHECK_DELAY = 2000;
+  let lastTime = Date.now();
+
+  setInterval(() => {
+    const currentTime = Date.now();
+    if (currentTime > (lastTime + CHECK_DELAY*2)) {  // ignore small delays
+      gapi.auth2.getAuthInstance().currentUser.get().reloadAuthResponse();
+    }
+    lastTime = currentTime;
+  }, CHECK_DELAY);
+}());
