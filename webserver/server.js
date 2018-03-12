@@ -19,9 +19,9 @@ app.get('/api/hello', outputUserInfo);
 
 
 app.get('/api/hello', (req, res) => {
-  res.send('Hello ' + (req.user.displayName || 'user without a name') + '!');
+    res.send('Hello ' + (req.user.displayName || 'user without a name') + '!');
 
-  console.log('successful authenticated request by ' + req.user.emails[0].value);
+    console.log('successful authenticated request by ' + req.user.emails[0].value);
 });
 
 function getUserEmail(req, res) {
@@ -39,7 +39,7 @@ function outputUserInfo(req, res) {
     // console.log("user: "+req.user.emails);
     // console.log("user: "+req.user.email);
     console.log("outputUserInfo called");
-    console.log("req in outputUserInfo"+req);
+    console.log("req in outputUserInfo" + req);
     try {
         console.log(req.user.displayName);
         console.log(req.user.emails[0].value);
@@ -57,7 +57,6 @@ app.use('/', express.static('webpages', {
 
 app.get('/webserver/translateText/', async function(req, res) { //Currently returns an error if no text is passed for translation. TODO Currently relying on client side validation to stop this
     res.setHeader('Content-Type', 'application/json');
-    let userID = req.user.id; //Getting the user ID from the Google Auth token. //TODO use this ID to associate the translation with the user in the database
 
     let isFavourite = req.query.isFavourite;
     let textToTranslate = req.query.text;
@@ -65,8 +64,15 @@ app.get('/webserver/translateText/', async function(req, res) { //Currently retu
     //TODO prevent translation if both are auto detect and/or both target and origin languages are the same.
     let originLanguage = req.query.languageToTranslateFrom; //TODO change all languageToTranslateFrom to originLanguage
     let translatedText = await translatorMethods.translateText(textToTranslate, languageToTranslateTo, originLanguage);
-    await databaseMethods.addTranslation(userID,originLanguage,languageToTranslateTo,textToTranslate,translatedText,isFavourite);
 
+    try {
+        let userID = req.user.id; //Getting the user ID from the Google Auth token. //TODO use this ID to associate the translation with the user in the database
+        if (userID) {
+            await databaseMethods.addTranslation(userID, originLanguage, languageToTranslateTo, textToTranslate, translatedText, isFavourite);
+        }
+    } catch (e) {
+        console.error("ERROR code : server.js03 : user not signed in. Not saving translation");
+    }
     let toSend = {
         translatedText: translatedText,
         languageTranslatedTo: "placeHolderLanguage"
@@ -76,8 +82,8 @@ app.get('/webserver/translateText/', async function(req, res) { //Currently retu
 
 
 
-        // let url = '/webserver/getPreviousTranslations?token=' + token;
-app.get('/webserver/getPreviousTranslations', async function(req,res){
+// let url = '/webserver/getPreviousTranslations?token=' + token;
+app.get('/webserver/getPreviousTranslations', async function(req, res) {
     res.setHeader('Content-Type', 'application/json');
     let userID = req.user.id; //Getting the user ID from the Google Auth token.
     let response = await databaseMethods.viewAllTranslations(userID);
