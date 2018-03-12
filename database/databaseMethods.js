@@ -12,7 +12,7 @@ async function connectionTester() {
     try {
         const sql = await init();
     } catch (e) {
-        console.log("ERROR code : databaseMethods.js01 : Could not connect to database. Exiting program now.");
+        console.log("ERROR code : databaseMethods.js01 : Could not connect to database. Exiting program now.Error:"+e);
         process.exit(1);
     }
 }
