@@ -1,54 +1,48 @@
-
 <!DOCTYPE HTML>
 <meta charset="UTF-8">
 <html lang="en">
-<link rel="stylesheet" type="text/css" href="style.css" />
-<script src="index.js"></script>
+<link rel="stylesheet" type="text/css" href="styleLogin.css"/>
 
 <head>
-  <title>easyTranslate </title>
+  <title>easyTranslate</title>
   <meta charset="UTF-8" />
 </head>
 
 <body>
   <main>
 
-  <nav>NAVIGATIONBAR TESTING THE LENGTH LOL HELLO???</nav>
+  <nav>EasyTranslate!</nav>
 
   <article>
 
     <aside>
-        <p>Input Language:</p>
-        <p>Output Language:</p>
-        <p>Input Text:</p>
+      <p>Username:</p>
+      <p>Password:</p>
+      <p>Native Language:</p>
     </aside>
 
     <section>
       <form>
         <div class="form">
-          <select id="inputLang">
-            <option disabled value = "0"> Language to translate to </option>
+          <textarea id="userNameInput"  placeholder="Username.."></textarea>
+        </div>
+        <div class="form">
+          <textarea id="passwordInput"  placeholder="Password..."></textarea>
+        </div>
+        <div class="form">
+          <select id="interfaceLang">
+            <option disabled value = "0"> Select Language: </option>
             <option value = "1">Language 1</option>
             <option value = "2">Language 2</option>
             <option value = "3">Language 3</option>
           </select>
         </div>
         <div class="form">
-          <select id="outputLang">
-            <option disabled value = "0"> Language to translate from </option>
-            <option value = "1">Language 1</option>
-            <option value = "2">Language 2</option>
-            <option value = "3">Language 3</option>
-          </select>
+          <button  id="loginButtonn" type="button">Login</button>
+          <button  id="signupButton" type="button">Sign-up</button>
         </div>
         <div class="form">
-          <textarea id="inputArea"  placeholder="Text to translate"></textarea>
-        </div>
-        <div class="form">
-          <textarea id="outputArea"  placeholder="Translated text will appear here"></textarea>
-        </div>
-        <div class="form">
-          <button  id="translateButton" type="button"> Translate </button>
+          <button  id="loginButton" type="button">Login as </button>
         </div>
       </form>
     </section>
@@ -59,3 +53,5 @@
 </body>
 
 </html>
+
+<script src="index.js"></script>

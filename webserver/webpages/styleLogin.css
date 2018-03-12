@@ -1,0 +1,139 @@
+html {
+  height: 100%;
+}
+
+body {
+  background: #3a8fff;
+  height: 100%;
+}
+
+/*General Structure Style*/
+main {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#3a8fff+0,ffffff+8,ffffff+92,ffffff+94,3a8fff+100 */
+  background: #3a8fff; /* Old browsers */
+  background: -moz-linear-gradient(left, #3a8fff 0%, #ffffff 8%, #ffffff 92%, #ffffff 94%, #3a8fff 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #3a8fff 0%,#ffffff 8%,#ffffff 92%,#ffffff 94%,#3a8fff 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #3a8fff 0%,#ffffff 8%,#ffffff 92%,#ffffff 94%,#3a8fff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3a8fff', endColorstr='#3a8fff',GradientType=1 ); /* IE6-9 */  font-family: "Arial", sans-serif;
+  width: 50%;
+  height: 100%;
+  min-width: 600px;
+  position: relative;
+  left: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+nav {
+  text-align: center;
+  /* background-color: red; */
+}
+
+article {
+  display: flex;
+  flex-flow: row nowrap;
+  /* background-color: blue; */
+}
+
+section {
+  flex: 2 auto;
+  /* background-color: green; */
+}
+
+/*ASIDE BAR STYLE*/
+aside {
+  text-align: right;
+  flex: 1 auto;
+  max-width: 10em;
+  min-width: 9.5em;
+  /* background-color: red; */
+}
+
+/*Element Style*/
+
+.form {
+  margin: 1em;
+  margin-top: 2em;
+}
+
+textarea {
+  resize: none;
+  width: 100%;
+  max-width: 20em;
+  height: 1.5em;
+}
+
+aside > p {
+  margin: 0.5em;
+  margin-top: 2.5em;
+  padding: 0;
+}
+aside > #lower {
+  margin-top: 10em;
+}
+
+@media only screen and (max-width: 850px) {
+  main {
+    width: 100%;
+    min-width: 400px;
+    left: 0;
+  }
+  nav {
+    text-align: center;
+  }
+  aside {
+    text-align: center;
+    max-width: none;
+    width: 20%;
+  }
+  section {
+    width: 80%;
+  }
+  select {
+    height: 3em;
+  }
+  article > section > button {
+    height: 5em;
+  }
+  textarea {
+    max-width: 90%;
+  }
+  aside > p {
+    margin-top: 3em;
+  }
+}
+
+/*Mobile Screen Changes*/
+@media only screen and (max-device-width: 400px) {
+    body {
+        /* background-color: lightgreen; */
+    }
+    main {
+      width: 100%;
+      left: 0;
+    }
+    nav {
+      text-align: center;
+    }
+    aside {
+      text-align: center;
+      max-width: none;
+      width: 20%;
+    }
+    section {
+      width: 80%;
+    }
+    select {
+      height: 3em;
+    }
+    button {
+      height: 3em;
+    }
+    textarea {
+      max-width: 90%;
+    }
+    aside > p {
+      margin-top: 3em;
+    }
+}
