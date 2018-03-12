@@ -44,7 +44,7 @@ async function getPreviousTranslations() {
         let url = '/webserver/getPreviousTranslations?token=' + token;
         const response = await fetch(url, fetchOptions);
         if (response.ok) {
-            
+
             let jsonResponse = await response.json();
             console.log(jsonResponse);
         } else {
@@ -59,7 +59,7 @@ async function getPreviousTranslations() {
  */
 function getLanguageToTranslateToo() {
     console.log("getLanguageToTranslateToo called");
-    let listOfTargetLanguages = document.getElementById('outputLang');
+    let listOfTargetLanguages = document.getElementById('targetLang');
     let indexOfSelectedTargetLanguage = listOfTargetLanguages.selectedIndex;
     if (indexOfSelectedTargetLanguage == 1) {
         console.log("auto");
@@ -76,7 +76,7 @@ function getLanguageToTranslateToo() {
  @return A string containing the language to translate from.
  */
 function getLanguageToTranslateFrom() {
-    let listOfOriginLanguages = document.getElementById('inputLang');
+    let listOfOriginLanguages = document.getElementById('originLang');
     let indexOfSelectedOriginLanguage = listOfOriginLanguages.selectedIndex;
     if (indexOfSelectedOriginLanguage == 1) { //If autodetecting the language
         console.log("auto");
