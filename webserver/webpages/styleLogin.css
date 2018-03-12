@@ -64,6 +64,13 @@ textarea {
   height: 1.5em;
 }
 
+input {
+  resize: none;
+  width: 100%;
+  max-width: 20em;
+  height: 1.5em;
+}
+
 aside > p {
   margin: 0.5em;
   margin-top: 2.5em;
