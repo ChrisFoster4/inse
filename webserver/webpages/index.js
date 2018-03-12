@@ -1,14 +1,12 @@
-console.log("index.js called");
-
 //Binding HTML buttons to their appropriate JavaScript functions
 document.getElementById('translateButton').addEventListener('click', submitTextToTranslate);
-document.getElementById('logoutButton').addEventListener('click', signOut);
+// document.getElementById('logoutButton').addEventListener('click', signOut);
 
 /*
  This function (submitTextToTranslate) should take what the user entered in the inputArea textarea and pass it to the server for translation. The result of the translation should then be put into the outputArea textarea. If the user is signed in then the result of the translation should also be sent to the server to be put into the database.
 */
 async function submitTextToTranslate() {
-    const token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token; //Getting the token of the currently logged in user which is passed to the server.
+    const token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token; //Getting the token of the currently logged in user which is sdpassed to the server.
     const fetchOptions = {
         credentials: 'same-origin',
         method: 'GET',
@@ -19,8 +17,9 @@ async function submitTextToTranslate() {
     let contentsOfTextBox = document.getElementById('inputArea').value; //This is the text that will be translated
     let languageToTranslateTo = getLanguageToTranslateToo();
     let languageToTranslateFrom = getLanguageToTranslateFrom();
+    let isFavourite = 1; //TODO get this from the user
     if (contentsOfTextBox) { //Checking that the user has entered text they wish to translate
-        const url = '/webserver/translateText?text=' + contentsOfTextBox + "&languageToTranslateTo=" + languageToTranslateTo + "&languageToTranslateFrom=" + languageToTranslateFrom;
+        const url = '/webserver/translateText?text=' + contentsOfTextBox + "&languageToTranslateTo=" + languageToTranslateTo + "&languageToTranslateFrom=" + languageToTranslateFrom + "&isFavourite=" + isFavourite;
         const response = await fetch(url, fetchOptions);
         if (response.ok) {
             let jsonResponse = await response.json();
@@ -31,6 +30,27 @@ async function submitTextToTranslate() {
             console.error('error submitting text to translate', response.status, response.statusText);
         }
     } else console.log("The user tried to translate null"); //TODO handle this more elligantly and indicate the error to the user.
+}
+async function getPreviousTranslations() {
+    const token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token; //Getting the token of the currently logged in user which is sdpassed to the server.
+    if (token) {
+        const fetchOptions = {
+            credentials: 'same-origin',
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            },
+        };
+        let url = '/webserver/getPreviousTranslations?token=' + token;
+        const response = await fetch(url, fetchOptions);
+        if (response.ok) {
+            
+            let jsonResponse = await response.json();
+            console.log(jsonResponse);
+        } else {
+            console.error("Error getting previous translations");
+        }
+    }
 }
 
 /*
@@ -116,7 +136,7 @@ async function callServer() {
 
     // handle the response
     const data = await response.text();
-    console.log("data: "+data);
+    console.log("data: " + data);
 
 }
 

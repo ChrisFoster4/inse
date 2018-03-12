@@ -58,20 +58,32 @@ app.use('/', express.static('webpages', {
 app.get('/webserver/translateText/', async function(req, res) { //Currently returns an error if no text is passed for translation. TODO Currently relying on client side validation to stop this
     res.setHeader('Content-Type', 'application/json');
     let userID = req.user.id; //Getting the user ID from the Google Auth token. //TODO use this ID to associate the translation with the user in the database
+
+    let isFavourite = req.query.isFavourite;
     let textToTranslate = req.query.text;
     let languageToTranslateTo = req.query.languageToTranslateTo;
     //TODO prevent translation if both are auto detect and/or both target and origin languages are the same.
     let originLanguage = req.query.languageToTranslateFrom; //TODO change all languageToTranslateFrom to originLanguage
     let translatedText = await translatorMethods.translateText(textToTranslate, languageToTranslateTo, originLanguage);
-    await databaseMethods.addTranslation(userID,originLanguage,languageToTranslateTo,textToTranslate,translatedText,true); //TODO get if it is a favourite from the user
+    await databaseMethods.addTranslation(userID,originLanguage,languageToTranslateTo,textToTranslate,translatedText,isFavourite);
 
-// async function addTranslation(userID, originLanguage, targetLanguage, originText, targetText, isFavourite) {
     let toSend = {
         translatedText: translatedText,
         languageTranslatedTo: "placeHolderLanguage"
     };
     res.json(toSend);
 });
+
+
+
+        // let url = '/webserver/getPreviousTranslations?token=' + token;
+app.get('/webserver/getPreviousTranslations', async function(req,res){
+    res.setHeader('Content-Type', 'application/json');
+    let userID = req.user.id; //Getting the user ID from the Google Auth token.
+    let response = await databaseMethods.viewAllTranslations(userID);
+    res.json(response);
+});
+
 
 /* Code to run the server. This will run indefinetly unless terminated. If an error occurs during startup then this error should be outputted.Otherwise a successful startup should be indicated.The server is run on port 8080 by default. To change this edit the value of the port constant*/
 const port = 8080; //TODO maybe pass port as a parameter to the server?

@@ -27,7 +27,7 @@ async function connectionTester() {
  @params isFavourite If the translation that is being added has been marked to be saved as a favourite.The function should check it is actually a boolean(true or false or 1 or 0) before inserting.
  */
 async function addTranslation(userID, originLanguage, targetLanguage, originText, targetText, isFavourite) {
-    if (isFavourite != true && isFavourite != false && isFavourite != 1 && isFavourite != 0) { //If isFavourite is "True" or "False" MySQL will count this as False.
+    if (isFavourite != 1 && isFavourite != 0) { //If isFavourite is "True" or "False" MySQL will count this as False.
         console.log("ERROR code : databaseMethods.js02 : Non Boolean passed to addTranslation in \"isFavourite\" parameter:" + isFavourite + ".Not adding translation.");
         return 1; //Non 0 exit code to indicate function failed.
     }
@@ -104,6 +104,19 @@ async function viewNonFavouriteTranslations(userID) {
     const [resultOfQuery] = await sql.query(query);
     return resultOfQuery;
 }
+
+/*
+ This function (viewAllTranslations) should return ALL translationss that the user has done regardless of if they are marked as favourites or not.
+ @params userID the username of the account that is trying to be accessed
+ @return This should return an array where each row that matches the SQL query is an element in the array.
+*/
+async function viewAllTranslations(userID) {
+    const sql = await init();
+    const query = sql.format(`select originLanguage,targetLanguage,originText,targetText from Translation where userID = ?`, userID);
+    const [resultOfQuery] = await sql.query(query);
+    return resultOfQuery;
+}
+module.exports.viewAllTranslations = viewAllTranslations;
 
 /*
  This function (viewNonFavouriteTranslations) should return ALL translations that the given user has done that they HAVE marked as favourites.
