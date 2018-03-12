@@ -1,11 +1,7 @@
 <!DOCTYPE HTML>
 <meta charset="UTF-8">
 <html lang="en">
-
 <link rel="stylesheet" type="text/css" href="styleLogin.css"/>
-=======
-<link rel="stylesheet" type="text/css" href="style.css" />
-
 
 <head>
   <title>easyTranslate</title>
@@ -18,64 +14,36 @@
   <nav>EasyTranslate!</nav>
 
   <article>
+
+    <aside>
+      <p>Username:</p>
+      <p>Password:</p>
+      <p>Native Language:</p>
+    </aside>
+
     <section>
       <form>
         <div class="form">
-		<p>Origin Language
-          <select id="originLang">
-            <option disabled value = "0"> Select Language: </option>
-			<option value = "1">Auto Detect</option>
-            <option value = "2">English</option>
-            <option value = "3">French</option>
-            <option value = "4">German</option>
-			<option value = "5">Spanish</option>
-			<option value = "6">Italian</option>
-			<option value = "7">Portugese</option>
-			<option value = "8">Dutch</option>
-			<option value = "9">Swedish</option>
-			<option value = "10">Norwegian</option>
-			<option value = "11">Polish</option>
-			<option value = "12">Russian</option>
-			<option value = "13">Greek</option>
-			<option value = "14">Arabic</option>
-			<option value = "15">Mandarin Chinese</option>			
-          </select>	
-		</p>
+          <textarea id="userNameInput"  placeholder="Username.."></textarea>
         </div>
         <div class="form">
-          <textarea id="inputArea"  placeholder="Text to translate"></textarea>
-        </div>
-		<div class="form">
-		<p>Target Language
-          <select id="targetLang">
-            <option disabled value = "0"> Select Language: </option>
-			<option value = "1">Auto Detect</option>
-            <option value = "2">English</option>
-            <option value = "3">French</option>
-            <option value = "4">German</option>
-			<option value = "5">Spanish</option>
-			<option value = "6">Italian</option>
-			<option value = "7">Portugese</option>
-			<option value = "8">Dutch</option>
-			<option value = "9">Swedish</option>
-			<option value = "10">Norwegian</option>
-			<option value = "11">Polish</option>
-			<option value = "12">Russian</option>
-			<option value = "13">Greek</option>
-			<option value = "14">Arabic</option>
-			<option value = "15">Mandarin Chinese</option>			
-          </select>	
-		</p>
+          <textarea id="passwordInput"  placeholder="Password..."></textarea>
         </div>
         <div class="form">
-          <textarea id="outputArea"  placeholder="Translated text will appear here" readonly></textarea>
+          <select id="interfaceLang">
+            <option disabled value = "0"> Select Language: </option>
+            <option value = "1">Language 1</option>
+            <option value = "2">Language 2</option>
+            <option value = "3">Language 3</option>
+          </select>
         </div>
-				<div class="form">
-		<p>
-		<button id="translateButton" type="button">Translate</button>
-		<input type="checkbox" id="isFavourite"> Is Favourite
-		</p>
-		</div>
+        <div class="form">
+          <button  id="loginButtonn" type="button">Login</button>
+          <button  id="signupButton" type="button">Sign-up</button>
+        </div>
+        <div class="form">
+          <button  id="loginButton" type="button">Login as </button>
+        </div>
       </form>
     </section>
 
@@ -84,12 +52,7 @@
   </main>
 </body>
 
-<meta name="google-signin-client_id" content="699486973238-qtkkm8tofnsnhidhvnhjm26efnvgs107.apps.googleusercontent.com">
-<div class="g-signin2" data-onsuccess="onSignIn"></div>
 </html>
 
 <script src="index.js"></script>
-========
-<script src="index.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
-

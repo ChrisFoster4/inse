@@ -27,19 +27,43 @@
     <section>
       <form>
         <div class="form">
-          <select id="inputLang">
+          <select id="originLang">
             <option disabled value = "0"> Select Language: </option>
-            <option value = "1">Language 1</option>
-            <option value = "2">Language 2</option>
-            <option value = "3">Language 3</option>
+			      <option value = "1">Auto Detect</option>
+            <option value = "2">English</option>
+            <option value = "3">French</option>
+            <option value = "4">German</option>
+      			<option value = "5">Spanish</option>
+      			<option value = "6">Italian</option>
+      			<option value = "7">Portugese</option>
+      			<option value = "8">Dutch</option>
+      			<option value = "9">Swedish</option>
+      			<option value = "10">Norwegian</option>
+      			<option value = "11">Polish</option>
+      			<option value = "12">Russian</option>
+      			<option value = "13">Greek</option>
+      			<option value = "14">Arabic</option>
+      			<option value = "15">Mandarin Chinese</option>
           </select>
         </div>
         <div class="form">
-          <select id="outputLang">
+          <select id="targetLang">
             <option disabled value = "0"> Select Language: </option>
-            <option value = "1">Language 1</option>
-            <option value = "2">Language 2</option>
-            <option value = "3">Language 3</option>
+			      <option value = "1">Auto Detect</option>
+            <option value = "2">English</option>
+            <option value = "3">French</option>
+            <option value = "4">German</option>
+      			<option value = "5">Spanish</option>
+      			<option value = "6">Italian</option>
+      			<option value = "7">Portugese</option>
+      			<option value = "8">Dutch</option>
+      			<option value = "9">Swedish</option>
+      			<option value = "10">Norwegian</option>
+      			<option value = "11">Polish</option>
+      			<option value = "12">Russian</option>
+      			<option value = "13">Greek</option>
+      			<option value = "14">Arabic</option>
+      			<option value = "15">Mandarin Chinese</option>
           </select>
         </div>
         <div class="form">
@@ -47,6 +71,9 @@
         </div>
         <div class="form">
           <textarea readonly id="outputArea"  placeholder="Translated text will appear here"></textarea>
+        </div>
+        <div class="form">
+          <input type="checkbox" id="isFavourite">Is Favourite</input>
         </div>
         <div class="form">
           <button  id="translateButton" type="button"> Translate </button>
@@ -62,3 +89,4 @@
 </html>
 
 <script src="index.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
