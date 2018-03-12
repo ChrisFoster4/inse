@@ -99,6 +99,9 @@ aside > #lower {
   textarea {
     max-width: 90%;
   }
+  input {
+    max-width: 90%;
+  }
   aside > p {
     margin-top: 3em;
   }
@@ -132,6 +135,9 @@ aside > #lower {
     }
     textarea {
       max-width: 90%;
+    }
+    input {
+    max-width: 90%;
     }
     aside > p {
       margin-top: 3em;
