@@ -42,6 +42,7 @@ async function addTranslation(userID, originLanguage, targetLanguage, originText
     });
     await sql.query(insertquery);
 }
+module.exports.addTranslation = addTranslation;
 
 /*
  This function (addUser) should insert a new user into the database.  Before inserting the user into the database their password should be hashed so that the password isn't stored in plain text.An error should be returned if a user already exists with that ID

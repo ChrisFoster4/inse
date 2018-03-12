@@ -15,20 +15,39 @@ app.use(GoogleAuth(googleClientID));
 // return 'Not authorized' if we don't have a user
 app.use('/api', GoogleAuth.guardMiddleware());
 
-app.get('/api/hello', getUserEmail);
+app.get('/api/hello', outputUserInfo);
 
+
+app.get('/api/hello', (req, res) => {
+  res.send('Hello ' + (req.user.displayName || 'user without a name') + '!');
+
+  console.log('successful authenticated request by ' + req.user.emails[0].value);
+});
 
 function getUserEmail(req, res) {
     res.send(req.user.emails[0].value);
     // console.log('validateUser : successful authenticated request by ' + req.user.emails[0].value);
 }
 
-function getUserID(req, res) {
-    res.send(req.user.id[0].value);
-}
+// function getUserID(req, res) {
+//     console.log(req.user);
+//     res.send(req.user.id);
+// }
 
-function getUserDisplayName() {
-    res.send(req.user.displayName[0].value);
+function outputUserInfo(req, res) {
+    // console.log("user: "+req.user);
+    // console.log("user: "+req.user.emails);
+    // console.log("user: "+req.user.email);
+    console.log("outputUserInfo called");
+    console.log("req in outputUserInfo"+req);
+    try {
+        console.log(req.user.displayName);
+        console.log(req.user.emails[0].value);
+        console.log("id" + req.user.id);
+        res.send(req.user.displayName);
+    } catch (e) {
+        console.error("ERROR code : server.js01 : error getting user info: " + e);
+    }
 }
 
 //Server the web pages such as index.html
@@ -38,12 +57,15 @@ app.use('/', express.static('webpages', {
 
 app.get('/webserver/translateText/', async function(req, res) { //Currently returns an error if no text is passed for translation. TODO Currently relying on client side validation to stop this
     res.setHeader('Content-Type', 'application/json');
-    let usersID = getUserID(req,res); //TODO use this ID to associate the translation with the user in the database
+    let userID = req.user.id; //Getting the user ID from the Google Auth token. //TODO use this ID to associate the translation with the user in the database
     let textToTranslate = req.query.text;
     let languageToTranslateTo = req.query.languageToTranslateTo;
     //TODO prevent translation if both are auto detect and/or both target and origin languages are the same.
     let originLanguage = req.query.languageToTranslateFrom; //TODO change all languageToTranslateFrom to originLanguage
     let translatedText = await translatorMethods.translateText(textToTranslate, languageToTranslateTo, originLanguage);
+    await databaseMethods.addTranslation(userID,originLanguage,languageToTranslateTo,textToTranslate,translatedText,true); //TODO get if it is a favourite from the user
+
+// async function addTranslation(userID, originLanguage, targetLanguage, originText, targetText, isFavourite) {
     let toSend = {
         translatedText: translatedText,
         languageTranslatedTo: "placeHolderLanguage"
