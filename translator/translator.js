@@ -3,18 +3,21 @@ const translate = require('google-translate-api'); //npmjs.com page for this mod
 const utilities = require("./util/utils.js"); //A file containing some helper function for translatingText
 
 /*
- *@params textToTranslate Should be a string.
- *@params originLanguage this parameter is optional as the google translate API can auto detect the language
- *@params targetLanguage the language the user wishes to translate too. This should be selected by the user from a dropdown on the webpage.
- TODO describe below function in detail including error handling
- */
+  This function (translateText) should translate the passed text using the google translate api by turning the target/origin language to their corresponding ISO codes.
+  The translated text can then be passed back to the server. Errors when no text is passed and on unexpected errors during translation
 
+ *@params textToTranslate the string of text the user is trying to translate
+ *@params originLanguage the language the text should be translated from - optional as google translate API can auto detect the language
+ *@params targetLanguage the language the text should be translated to - Should be selected by the user from a dropdown on the webpage.
+ *@return toReturn the translated text obtained from the translate function from google api
+
+ */
 async function translateText(textToTranslate, targetLanguage, originLanguage) {
     let toReturn = "ERROR code : translator.js01 : no result from translation";
-
+    // get the target/origin languages corresponding ISO codes
     targetLanguage = utilities.userLanguageToISO_Code(targetLanguage);
     originLanguage = utilities.userLanguageToISO_Code(originLanguage);
-    if (textToTranslate) {
+    if (textToTranslate) { // checking the text to translate isn't null TODO awaiting client side validation
         await translate(textToTranslate, {
             from: originLanguage,
             to: targetLanguage
