@@ -180,20 +180,3 @@ async function newConnection() {
 
 connectionTester(); //Checking that a connection to the database can be made.
 console.log("Database methods successfully imported.");
-
-
-//Tests TODO remove below function once system is ready for release.
-function tests(){
-    addUser(12345, "smith", "password123456789", "Spanish");
-    addUser(123456, "smith", "password12345", "Spanish");
-    addTranslation(123456, "English", "Spanish", "Hello", "Hola", true);
-    addTranslation(123456, "English", "German", "Hello", "Halo", false);
-    addTranslation(123456, "English", "German", "Hello", "Halo", 0);
-    addTranslation(123456, "English", "German", "Hello", "Halo", 1);
-    retrieveHashedPassword(12345);
-    retrieveHashedPassword(123456);
-    viewNonFavouriteTranslations(123456);
-    viewFavouriteTranslations(123456);
-    retrieveNativeLanguage(123456);
-}
-tests();
