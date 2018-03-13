@@ -3,3 +3,4 @@
 - [ ] Look at TODO's in databaseMethods.js
 - [ ] Look for TODO within code.
 - [ ] Add other tasks to this list.
+- [ ] Make auto detected origin language get inserted in to the database

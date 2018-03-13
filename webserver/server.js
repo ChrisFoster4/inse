@@ -63,19 +63,21 @@ app.get('/webserver/translateText/', async function(req, res) { //Currently retu
     let languageToTranslateTo = req.query.languageToTranslateTo;
     //TODO prevent translation if both are auto detect and/or both target and origin languages are the same.
     let originLanguage = req.query.languageToTranslateFrom; //TODO change all languageToTranslateFrom to originLanguage
-    let translatedText = await translatorMethods.translateText(textToTranslate, languageToTranslateTo, originLanguage);
+    let response  = await translatorMethods.translateText(textToTranslate, languageToTranslateTo, originLanguage);
+    let translatedText = response.text;
+    let languageTranslatedTo = response.targetLanguage;
 
     try {
         let userID = req.user.id; //Getting the user ID from the Google Auth token. //TODO use this ID to associate the translation with the user in the database
         if (userID) {
-            await databaseMethods.addTranslation(userID, originLanguage, languageToTranslateTo, textToTranslate, translatedText, isFavourite);
+            await databaseMethods.addTranslation(userID, originLanguage, languageTranslatedTo, textToTranslate, translatedText, isFavourite);
         }
     } catch (e) {
         console.error("ERROR code : server.js03 : user not signed in. Not saving translation");
     }
     let toSend = {
         translatedText: translatedText,
-        languageTranslatedTo: "placeHolderLanguage"
+        languageTranslatedTo: languageTranslatedTo
     };
     res.json(toSend);
 });

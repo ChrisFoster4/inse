@@ -13,17 +13,23 @@ const utilities = require("./util/utils.js"); //A file containing some helper fu
 
  */
 async function translateText(textToTranslate, targetLanguage, originLanguage) {
-    let toReturn = "ERROR code : translator.js01 : no result from translation";
+    let placeHolderResponse = "ERROR code : translator.js01 : no result from translation";
+    let toReturn = {text : placeHolderResponse,
+                    originLanguage: "auto",
+                    targetLanguage: "auto"
+                    }
+
     // get the target/origin languages corresponding ISO codes
     targetLanguage = utilities.userLanguageToISO_Code(targetLanguage);
     originLanguage = utilities.userLanguageToISO_Code(originLanguage);
-    if (textToTranslate) { // checking the text to translate isn't null TODO awaiting client side validation
+    if (textToTranslate) { // checking the text to translate isn't null
         await translate(textToTranslate, {
             from: originLanguage,
             to: targetLanguage
         }).then(res => {
             let targetLanguage = (res.from.language.iso);
-            toReturn = res.text;
+            toReturn.targetLanguage = targetLanguage;
+            toReturn.text = res.text;
             return toReturn;
         }).catch(err => {
             console.error("ERROR code: translator.js03 : Error during translation : "+err);
