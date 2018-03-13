@@ -17,7 +17,7 @@ async function submitTextToTranslate() {
     let contentsOfTextBox = document.getElementById('inputArea').value; //This is the text that will be translated
     let languageToTranslateTo = getLanguageToTranslateToo();
     let languageToTranslateFrom = getLanguageToTranslateFrom();
-    let isFavourite = 1; //TODO get this from the user
+    let isFavourite = getIsFavourite();
     if (contentsOfTextBox) { //Checking that the user has entered text they wish to translate
         const url = '/webserver/translateText?text=' + contentsOfTextBox + "&languageToTranslateTo=" + languageToTranslateTo + "&languageToTranslateFrom=" + languageToTranslateFrom + "&isFavourite=" + isFavourite;
         const response = await fetch(url, fetchOptions);
@@ -86,6 +86,16 @@ function getLanguageToTranslateFrom() {
         console.log("inputLang: " + languageToTranslateFrom);
         return languageToTranslateFrom;
     }
+}
+
+
+/*
+ This function (getIsFavourite) checks if the isFavourite check box is ticked or not and returns the result.
+ @return boolean if the check box is ticked or not.
+*/
+function getIsFavourite(){
+    let checkBox = document.getElementById('isFavourite');
+    return checkBox.checked;
 }
 
 //Below 2 functions are from Google - https://developers.google.com/identity/sign-in/web/sign-in

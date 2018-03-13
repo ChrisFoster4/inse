@@ -27,6 +27,9 @@ async function connectionTester() {
  @params isFavourite If the translation that is being added has been marked to be saved as a favourite.The function should check it is actually a boolean(true or false or 1 or 0) before inserting.
  */
 async function addTranslation(userID, originLanguage, targetLanguage, originText, targetText, isFavourite) {
+    //Javascript treats booleans are true or false but the database wants 1 or 0
+    if (isFavourite == "true") isFavourite = 1;
+    if (isFavourite == "false") isFavourite = 0;
     if (isFavourite != 1 && isFavourite != 0) { //If isFavourite is "True" or "False" MySQL will count this as False.
         console.log("ERROR code : databaseMethods.js02 : Non Boolean passed to addTranslation in \"isFavourite\" parameter:" + isFavourite + ".Not adding translation.");
         return 1; //Non 0 exit code to indicate function failed.
