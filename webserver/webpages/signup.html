@@ -4,20 +4,21 @@
 <link rel="stylesheet" type="text/css" href="styleLogin.css"/>
 
 <head>
-  <title>Login - EasyTranslate</title>
+  <title>Sign-Up - EasyTranslate</title>
   <meta charset="UTF-8" />
 </head>
 
 <body>
   <main>
 
-  <nav>EasyTranslate!<p>Login</p></nav>
+  <nav>EasyTranslate!<p>Sign-Up</p></nav>
 
   <article>
 
     <aside>
-      <p>Username:</p>
-      <p>Password:</p>
+      <p>New Username:</p>
+      <p>New Password:</p>
+      <p>Confirm Password:</p>
       <p>Native Language:</p>
     </aside>
 
@@ -30,6 +31,11 @@
           <input id="passwordInput" type="password" placeholder="Password..."></input>
         </div>
         <div class="form">
+        </div>
+        <div class="form">
+          <input id="passwordConfirmInput" type="password" placeholder="Confirm Password..."></input>
+        </div>
+        <div class="form">
           <select id="interfaceLang">
             <option disabled value = "0"> Select Language: </option>
             <option value = "1">Language 1</option>
@@ -38,14 +44,7 @@
           </select>
         </div>
         <div class="form">
-          <button  id="loginButtonn" type="button">Login</button>
           <button  id="signupButton" type="button">Sign-up</button>
-        </div>
-        <div class="form">
-          <button  id="loginGoogleButton" type="button">Login with Google</button>
-        </div>
-        <div class="form">
-          <button  id="loginGuestButton" type="button">Login as Guest</button>
         </div>
       </form>
     </section>
