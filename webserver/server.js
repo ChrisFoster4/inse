@@ -65,18 +65,25 @@ app.get('/webserver/translateText/', async function(req, res) { //Currently retu
     let originLanguage = req.query.languageToTranslateFrom; //TODO change all languageToTranslateFrom to originLanguage
     let response  = await translatorMethods.translateText(textToTranslate, languageToTranslateTo, originLanguage);
     let translatedText = response.text;
-    let languageTranslatedTo = response.targetLanguage;
+    let languageTranslatedFrom = response.originLanguage;
+
+
+    //The API only returns the language translated from so to get the language translate too we have to translate the result of the previous translation. //TODO find a way around this.
+    let secondResponse = await translatorMethods.translateText(translatedText,"auto","auto");
+    let languageTranslatedTo = secondResponse.originLanguage;
+
 
     try {
         let userID = req.user.id; //Getting the user ID from the Google Auth token. //TODO use this ID to associate the translation with the user in the database
         if (userID) {
-            await databaseMethods.addTranslation(userID, originLanguage, languageTranslatedTo, textToTranslate, translatedText, isFavourite);
+            await databaseMethods.addTranslation(userID, languageTranslatedFrom, languageTranslatedTo, textToTranslate, translatedText, isFavourite);
         }
     } catch (e) {
         console.error("ERROR code : server.js03 : user not signed in. Not saving translation");
     }
     let toSend = {
         translatedText: translatedText,
+        languageTranslatedFrom : languageTranslatedFrom,
         languageTranslatedTo: languageTranslatedTo
     };
     res.json(toSend);
