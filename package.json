@@ -24,8 +24,5 @@
     "mysql2": "^1.5.2",
     "sha256": "^0.2.0",
     "simple-google-openid": "^0.2.2"
-  },
-  "devDependencies": {
-    "chai-http": "^3.0.0"
   }
 }
