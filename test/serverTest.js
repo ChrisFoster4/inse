@@ -41,15 +41,23 @@ describe('Test Translations', function() {
       });
     });
 
-
-
 describe('Previous Translations', function() {
-  it('Get previous translations: responds with status 404, user not signed it', function(done) {
+  it('Get previous translations: Fails and reponse with error 404, user not signed it', function(done) {
     chai.request(app)
-      .get('/webserver/getPreviousTranslations')
+      .get('/webserver/getPreviousTranslations')  // TODO include .redirect test
       .end(function(err, res) {
-        expect(res).to.have.status(404).and.be.a('undefined');
+        expect(res).to.have.status(404);
         done();
         });
     });
-  });
+  it('View user details: Not authorized as user is not logged in', function(done) {
+    chai.request(app)
+      .get('/api/hello')
+      .end(function(err, res) {
+        expect(res).to.have.status(401);  // TODO include .redirect test
+        done();
+        });
+      });
+    });
+
+//TODO Database tests
