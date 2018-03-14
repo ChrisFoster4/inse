@@ -17,7 +17,8 @@ async function translateText(textToTranslate, targetLanguage, originLanguage) {
     let toReturn = {text : placeHolderResponse,
                     originLanguage: "auto",
                     targetLanguage: "auto"
-                    }
+                };
+
 
     // get the target/origin languages corresponding ISO codes
     targetLanguage = utilities.userLanguageToISO_Code(targetLanguage);

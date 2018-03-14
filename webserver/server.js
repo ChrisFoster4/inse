@@ -58,7 +58,7 @@ app.get('/webserver/translateText/', async function(req, res) { //Currently retu
         console.error("ERROR code : server.js04 : no value for a parameter.");
     }
 
-    let response = await translatorMethods.translateText("asd", languageToTranslateTo, originLanguage);
+    let response = await translatorMethods.translateText(textToTranslate, languageToTranslateTo, originLanguage);
     let translatedText = response.text;
     let languageTranslatedFrom = response.originLanguage;
 
