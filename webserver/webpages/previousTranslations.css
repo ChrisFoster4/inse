@@ -1,6 +1,6 @@
 main {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-column-gap: 1em;
     grid-template-rows: 0.125fr 1fr 0.0625fr;
     grid-template-areas: "head head head head" "weeksColumn topicsColumn notesColumn resourcesColumn" "footer footer footer footer";

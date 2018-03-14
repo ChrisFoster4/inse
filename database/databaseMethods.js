@@ -115,8 +115,9 @@ async function viewNonFavouriteTranslations(userID) {
 */
 async function viewAllTranslations(userID) {
     const sql = await init();
-    const query = sql.format(`select originLanguage,targetLanguage,originText,targetText from Translation where userID = ?`, userID);
+    const query = sql.format(`select originLanguage,targetLanguage,originText,targetText,isFavourite from Translation where userID = ?`, userID);
     const [resultOfQuery] = await sql.query(query);
+    console.log(resultOfQuery[0]);
     return resultOfQuery;
 }
 module.exports.viewAllTranslations = viewAllTranslations;

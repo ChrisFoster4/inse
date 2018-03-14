@@ -9,18 +9,30 @@
 <header>
     Previous translations
 </header>
-<main>
-    <p>Origin Text</p>
-    <p>Translated Text</p>
-    <p>Origin Language</p>
-    <p>Language translated to</p>
-    <div class="originText"></div>
-    <div class="translatedText"> </div>
-    <div class="originLanguage"> </div>
-    <div class="languageTranslatedTo"> </div>
-</main>
-        <meta name="google-signin-client_id" content="699486973238-qtkkm8tofnsnhidhvnhjm26efnvgs107.apps.googleusercontent.com">
-        <div class="g-signin2" data-onsuccess="onSignIn" ></div>
 
+<body>
+    <main>
+        <p>Origin Text</p>
+        <p>Translated Text</p>
+        <p>Origin Language</p>
+        <p>Language translated to</p>
+        <p> Filter options</p>
+        <div class="originText"></div>
+        <div class="translatedText"> </div>
+        <div class="originLanguage"> </div>
+        <div class="languageTranslatedTo"> </div>
+
+          <select id="favouritesDropdown">
+            <option selected disabled value = "0"> Filter </option>
+            <option value = "1">All 1</option>
+            <option value = "2">Favourites only 2</option>
+            <option value = "3">Non favourites only 3</option>
+          </select>
+
+    </main>
+    <meta name="google-signin-client_id" content="699486973238-qtkkm8tofnsnhidhvnhjm26efnvgs107.apps.googleusercontent.com">
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+</body>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="previousTranslations.js"></script>
