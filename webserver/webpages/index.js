@@ -2,7 +2,7 @@
 document.getElementById('translateButton').addEventListener('click', submitTextToTranslate);
 // document.getElementById('logoutButton').addEventListener('click', signOut);
 
-/*
+/**
  This function (submitTextToTranslate) should take what the user entered in the inputArea textarea and pass it to the server for translation. The result of the translation should then be put into the outputArea textarea. If the user is signed in then the result of the translation should also be sent to the server to be put into the database.
 */
 async function submitTextToTranslate() {
@@ -53,7 +53,7 @@ async function getPreviousTranslations() {
     }
 }
 
-/*
+/**
  This function (getLanguageToTranslateToo) should get the language that is selected in the outputLang dropdown box.
  @return A string containing the language to translate to.
  */
@@ -71,7 +71,7 @@ function getLanguageToTranslateToo() {
     }
 }
 
-/*
+/**
  This function (getLanguageToTranslateFrom) should get the language that is selected in the inputLang dropdown box.
  @return A string containing the language to translate from.
  */
@@ -89,7 +89,7 @@ function getLanguageToTranslateFrom() {
 }
 
 
-/*
+/**
  This function (getIsFavourite) checks if the isFavourite check box is ticked or not and returns the result.
  @return boolean if the check box is ticked or not.
 */
@@ -99,7 +99,7 @@ function getIsFavourite(){
 }
 
 //Below 2 functions are from Google - https://developers.google.com/identity/sign-in/web/sign-in
-/*
+/**
  This function (onSignIn) is run whenever a google user presses the signin button and correctly authenticates OR whenever a signed in user loads the page. The function should set a global variable so other functions can check if a user is signed in. The function also logs the users information.
  @params googleUser The Google account being user. This is passed to the function by the Google API
 */
@@ -112,7 +112,7 @@ function onSignIn(googleUser) {
     // console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 }
 
-/*
+/**
  This function (signOut) is only ran when the uses presses on the "logout" button.The function should sign out the user and set a global variable to allow other functions to check if the user is signed in.
 */
 async function signOut() {

@@ -14,15 +14,17 @@ app.use(GoogleAuth(googleClientID));
 
 // return 'Not authorized' if we don't have a user
 app.use('/api', GoogleAuth.guardMiddleware());
-
 app.get('/api/hello', outputUserInfo);
-
-
 app.get('/api/hello', (req, res) => {
     res.send('Hello ' + (req.user.displayName || 'user without a name') + '!');
 
     console.log('successful authenticated request by ' + req.user.emails[0].value);
 });
+
+//Serve the web pages such as index.html
+app.use('/', express.static('webpages', {
+    extensions: ['html']
+}));
 
 function getUserEmail(req, res) {
     res.send(req.user.emails[0].value);
@@ -49,11 +51,6 @@ function outputUserInfo(req, res) {
         console.error("ERROR code : server.js01 : error getting user info: " + e);
     }
 }
-
-//Server the web pages such as index.html
-app.use('/', express.static('webpages', {
-    extensions: ['html']
-}));
 
 app.get('/webserver/translateText/', async function(req, res) { //Currently returns an error if no text is passed for translation. TODO Currently relying on client side validation to stop this
     res.setHeader('Content-Type', 'application/json');
@@ -94,15 +91,30 @@ app.get('/webserver/translateText/', async function(req, res) { //Currently retu
 // let url = '/webserver/getPreviousTranslations?token=' + token;
 app.get('/webserver/getPreviousTranslations', async function(req, res) {
     res.setHeader('Content-Type', 'application/json');
-    let userID = req.user.id; //Getting the user ID from the Google Auth token.
-    let response = await databaseMethods.viewAllTranslations(userID);
-    res.json(response);
+    try{
+      let userID = req.user.id; //Getting the user ID from the Google Auth token.
+        if(userID){
+          let response = await databaseMethods.viewAllTranslations(userID)
+          res.json(response);
+      }else{
+        let response = {};
+        res.json(response);
+      };
+      } catch (e){
+          error(res, e);
+      };
 });
 
+function error(res, msg){
+    res.sendStatus(404)
+    console.error(msg)
+  }
 
-/* Code to run the server. This will run indefinetly unless terminated. If an error occurs during startup then this error should be outputted.Otherwise a successful startup should be indicated.The server is run on port 8080 by default. To change this edit the value of the port constant*/
+/** Code to run the server. This will run indefinetly unless terminated. If an error occurs during startup then this error should be outputted.Otherwise a successful startup should be indicated.The server is run on port 8080 by default. To change this edit the value of the port constant*/
 const port = 8080; //TODO maybe pass port as a parameter to the server?
 app.listen(port, (err) => {
     if (err) console.error('error starting server: ', err);
     else console.log('easyTranslate server now running.'); //TODO change NameOfOurSiteHere to appropriate.
 });
+
+module.exports = app

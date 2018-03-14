@@ -1,0 +1,59 @@
+html {
+  height: 100%;
+}
+
+body {
+  background: #3a8fff; /* Old browsers */
+  background: -moz-linear-gradient(left, #3a8fff 0%, #3a8fff 20%,#ffffff 25%, #ffffff 50%, #ffffff 75%,#3a8fff 80%, #3a8fff 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #3a8fff 0%, #3a8fff 20%,#ffffff 25%, #ffffff 50%, #ffffff 70%,#3a8fff 80%, #3a8fff 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #3a8fff 0%, #3a8fff 20%,#ffffff 25%, #ffffff 50%, #ffffff 75%,#3a8fff 80%, #3a8fff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3a8fff', endColorstr='#3a8fff',GradientType=1 ); /* IE6-9 */  font-family: "Arial", sans-serif;
+  width: 50%;
+  height: 100%;
+  min-width: 600px;
+  position: relative;
+  left: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+main {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 1em;
+    grid-template-rows: 0fr 0.025fr 1fr;
+    grid-template-areas: "head head head head" "weeksColumn topicsColumn notesColumn resourcesColumn" "footer footer footer footer";
+    height: 95vh;
+	height: 100%;
+
+	min-width: 600px;
+	position: relative;
+
+	Text-align: center;
+}
+
+* {
+    text-align: center;
+
+}
+
+.originText, .translatedText, .originLanguage, .languageTranslatedTo {
+    border: var(--column-border);
+    text-align: left;
+}
+
+.originText {
+    background: #F8F9F9;
+}
+
+.translatedText {
+    background: #F8F9F9 ;
+}
+
+.originLanguage {
+    background: #F8F9F9;
+}
+
+.languageTranslatedTo {
+    background: #F8F9F9;
+}
