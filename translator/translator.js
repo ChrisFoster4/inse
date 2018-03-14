@@ -28,7 +28,7 @@ async function translateText(textToTranslate, targetLanguage, originLanguage) {
             to: targetLanguage
         }).then(res => {
             let targetLanguage = (res.from.language.iso);
-            toReturn.originLanguage = targetLanguage;
+            toReturn.originLanguage = utilities.isoCodeToHumanLanguage(targetLanguage);
             toReturn.text = res.text;
             return toReturn;
         }).catch(err => {
