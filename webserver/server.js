@@ -94,13 +94,15 @@ app.get('/webserver/getPreviousTranslations', async function(req, res) {
     try{
       let userID = req.user.id; //Getting the user ID from the Google Auth token.
         if(userID){
-          let response = await databaseMethods.viewAllTranslations(userID)}
-      else{
-        let response = {}};
+          let response = await databaseMethods.viewAllTranslations(userID)
+          res.json(response);
+      }else{
+        let response = {};
+        res.json(response);
+      };
       } catch (e){
           error(res, e);
       };
-      res.json(response);
 });
 
 function error(res, msg){
