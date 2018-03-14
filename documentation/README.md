@@ -5,8 +5,6 @@ How to view source code:
 2. Launch index.html in a browser of your choice
 3. Navigate around the source code within the browser
 
-The documentation can be generated on Unix or Windows.Please note that on Windows it will create documentation of the contents of the node_modules folder which is created by third parties.
-
 How To generate documentation from source code:
 1. Install NPM and NodeJS. View README.md in the folder above this for help on installation.
 2. Install the jsdoc package using NPM(Node Package Manager) using npm install jsdoc
