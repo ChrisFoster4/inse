@@ -4,7 +4,8 @@
   "description": "easyTranslate project for INSE",
   "main": "webserver/server.js",
   "scripts": {
-    "test": "mocha --exit"
+    "test": "mocha --exit",
+    "server": "cd webserver && node server.js"
   },
   "repository": {
     "type": "git",
