@@ -1,7 +1,7 @@
 'use strict'
 //TODO comment describe below function
 function userLanguageToISO_Code(inputString) {
-    /* Languages we included  in our SRS questionaire
+    /** Languages we included  in our SRS questionaire
      English,French,German,Spanish,Italian,Portugese,
      Dutch,Swedish,Norwegian,Polish,Russian,Greek,Arabic,Mandarin Chinese, Japanese
 
@@ -52,7 +52,7 @@ function userLanguageToISO_Code(inputString) {
 }
 module.exports.userLanguageToISO_Code = userLanguageToISO_Code;
 
-/*
+/**
 This function is needed as when the language is autodetect to Google translate API
 returns an ISO code(e.g. "es") not a human langage (e.g. "Spanish").
 This is the inverse of the userLanguageToISO_Code function.

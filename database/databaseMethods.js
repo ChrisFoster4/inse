@@ -5,7 +5,7 @@ const sha256 = require('sha256');
 const config = require('./config.json'); //Pull in a file containing the database name, host of the database, username to use and the password to use.
 
 
-/*
+/**
   This function (connectionTester) checks that a connection can be made to the database. If the connection fails it should stop the entire server(Not just exit the function).This function should be called at the bottom of the file so when the server starts it checks that the database is reachable.
 */
 async function connectionTester() {
@@ -17,7 +17,7 @@ async function connectionTester() {
     }
 }
 
-/*
+/**
  This function (addTranslation) should insert a new translation into the database.
  @params userID the identification number of the user
  @params originLanguage the language the text was translated from
@@ -47,7 +47,7 @@ async function addTranslation(userID, originLanguage, targetLanguage, originText
 }
 module.exports.addTranslation = addTranslation;
 
-/*
+/**
  This function (addUser) should insert a new user into the database.  Before inserting the user into the database their password should be hashed so that the password isn't stored in plain text.An error should be returned if a user already exists with that ID
  To to perform the hashing we are using the 'sha256' node package.
  @params userID the identification of the newly created user.
@@ -74,7 +74,7 @@ async function addUser(userID, fName, password, nativeLanguage) {
     }
 }
 
-/*
+/**
  This function (retrieveLoginData) would return the hashed password for the given account so it can be checked against the password that the user is trying to sign in using.Errors should be raised if multiple accounts are found with the same ID or if there is no account found with the given ID.
  @params userID the username of the account that is trying to be accessed
  @return Either the hashed password as a string or an appropriate error message
@@ -96,7 +96,7 @@ async function retrieveHashedPassword(userID) {
     return (resultOfQuery[0].password);
 }
 
-/*
+/**
  This function (viewNonFavouriteTranslations) should return ALL translations that the given user has done that they HAVE NOTmarked as favourites.
  @params userID the username of the account that is trying to be accessed
  @return This should return an array where each row that matches the SQL query is an element in the array.
@@ -108,7 +108,7 @@ async function viewNonFavouriteTranslations(userID) {
     return resultOfQuery;
 }
 
-/*
+/**
  This function (viewAllTranslations) should return ALL translationss that the user has done regardless of if they are marked as favourites or not.
  @params userID the username of the account that is trying to be accessed
  @return This should return an array where each row that matches the SQL query is an element in the array.
@@ -121,7 +121,7 @@ async function viewAllTranslations(userID) {
 }
 module.exports.viewAllTranslations = viewAllTranslations;
 
-/*
+/**
  This function (viewNonFavouriteTranslations) should return ALL translations that the given user has done that they HAVE marked as favourites.
  @params userID the username of the account that is trying to be accessed
  @return This should return an array where each row that matches the SQL query is an element in the array.
@@ -133,7 +133,7 @@ async function viewFavouriteTranslations(userID) {
     return resultOfQuery;
 }
 
-/*
+/**
  This function (retrieveNativeLanguage) gets a users native language from the database.Errors should be thrown if no native language is found or multiple native languages are found.
  @params userID the username of the account that is trying to be accessed
  @return The users native language as a string

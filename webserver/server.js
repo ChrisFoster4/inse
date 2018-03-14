@@ -108,7 +108,7 @@ function error(res, msg){
     console.error(msg)
   }
 
-/* Code to run the server. This will run indefinetly unless terminated. If an error occurs during startup then this error should be outputted.Otherwise a successful startup should be indicated.The server is run on port 8080 by default. To change this edit the value of the port constant*/
+/** Code to run the server. This will run indefinetly unless terminated. If an error occurs during startup then this error should be outputted.Otherwise a successful startup should be indicated.The server is run on port 8080 by default. To change this edit the value of the port constant*/
 const port = 8080; //TODO maybe pass port as a parameter to the server?
 app.listen(port, (err) => {
     if (err) console.error('error starting server: ', err);
