@@ -41,7 +41,7 @@ function userLanguageToISO_Code(inputString) {
         case "Japanese":
             return "ja";
         case "Mandarin Chinese":
-            return "zh-cn"; //ISO code according to https://en.wikipedia.org/wiki/Mandarin_Chinese
+            return "zh-CN"; //ISO code according to https://en.wikipedia.org/wiki/Mandarin_Chinese
         case "auto":
             return ""; //No language entered. Autodetecting language
         default: // This should NEVER be reached as the input is from a drop down list
@@ -89,7 +89,7 @@ function isoCodeToHumanLanguage(isoCode) {
             return "Arabic";
         case "ja":
             return "Japanese"
-        case "zh-cn":
+        case "zh-CN":
             return "Mandarin Chinese"
         default:
             console.log("ERROR code : utils.js02 :  Google API returned an unrecgonised ISO code" + isoCode);
