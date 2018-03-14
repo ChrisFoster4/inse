@@ -1,17 +1,39 @@
+html {
+  height: 100%;
+}
+
+body {
+  background: #3a8fff; /* Old browsers */
+  background: -moz-linear-gradient(left, #3a8fff 0%, #ffffff 8%, #ffffff 92%, #ffffff 94%, #3a8fff 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #3a8fff 0%,#ffffff 8%,#ffffff 92%,#ffffff 94%,#3a8fff 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #3a8fff 0%,#ffffff 8%,#ffffff 92%,#ffffff 94%,#3a8fff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3a8fff', endColorstr='#3a8fff',GradientType=1 ); /* IE6-9 */  font-family: "Arial", sans-serif;
+  width: 50%;
+  height: 100%;
+  min-width: 600px;
+  position: relative;
+  left: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
 main {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 0.5fr);
     grid-column-gap: 1em;
-    grid-template-rows: 0.125fr 1fr 0.0625fr;
+    grid-template-rows: 0fr 0.025fr 1fr;
     grid-template-areas: "head head head head" "weeksColumn topicsColumn notesColumn resourcesColumn" "footer footer footer footer";
     height: 95vh;
-    width: 95vw;
-    background-color: #F8F9F9;
-    text-align: center;
+	height: 100%;
+	min-width: 600px;
+	position: relative;
+
+	Text-align: center;
 }
 
 * {
     text-align: center;
+
 }
 
 .originText, .translatedText, .originLanguage, .languageTranslatedTo {
@@ -20,17 +42,17 @@ main {
 }
 
 .originText {
-    background: #4ABDAC;
+    background: #F8F9F9;
 }
 
 .translatedText {
-    background: #FC4A1A;
+    background: #F8F9F9 ;
 }
 
 .originLanguage {
-    background: #F7B733;
+    background: #F8F9F9;
 }
 
 .languageTranslatedTo {
-    background: #DFDCE3;
+    background: #F8F9F9;
 }
