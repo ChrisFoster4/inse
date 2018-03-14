@@ -43,21 +43,22 @@ function outputUserInfo(req, res) {
  @params req.query.isFavourite boolean If the translation about to be done or not is to be stored as a favourite.
  @params req.query.textToTranslate string The text that shall be passed to the translation module
  @params req.query.languageToTranslateTo The language that the user wishes to translate to
- @params req.query.originLanguage The language that is being translated from.
+ @params req.query.languageToTranslateFrom The language that is being translated from.
  @return  res JSON object The response(res) should contain the translated text, the language translated to in NON iso code form and the language translated from in NON iso code form
 */
 app.get('/webserver/translateText/', async function(req, res) { //Currently returns an error if no text is passed for translation. TODO Currently relying on client side validation to stop this
     res.setHeader('Content-Type', 'application/json');
 
-    try {
-        let isFavourite = req.query.isFavourite;
+    //Can't use try catch here as it makes the varibles local scope to the try block. Weird.
         let textToTranslate = req.query.text;
+        let isFavourite = req.query.isFavourite;
         let languageToTranslateTo = req.query.languageToTranslateTo;
-        let originLanguage = req.query.languageToTranslateFrom; //TODO change all languageToTranslateFrom to originLanguage
-    } catch (e) {
-        console.error("ERROR code : server.js02 : Missing parameter is translateText. Error=" + e);
+        let originLanguage = req.query.languageToTranslateFrom;
+    if (textToTranslate == undefined || isFavourite == undefined || languageToTranslateTo == undefined || originLanguage == undefined){
+        console.error("ERROR code : server.js04 : no value for a parameter.");
     }
-    let response = await translatorMethods.translateText(textToTranslate, languageToTranslateTo, originLanguage);
+
+    let response = await translatorMethods.translateText("asd", languageToTranslateTo, originLanguage);
     let translatedText = response.text;
     let languageTranslatedFrom = response.originLanguage;
 
