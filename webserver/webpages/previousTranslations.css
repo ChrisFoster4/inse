@@ -1,0 +1,36 @@
+main {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 1em;
+    grid-template-rows: 0.125fr 1fr 0.0625fr;
+    grid-template-areas: "head head head head" "weeksColumn topicsColumn notesColumn resourcesColumn" "footer footer footer footer";
+    height: 95vh;
+    width: 95vw;
+    background-color: #F8F9F9;
+    text-align: center;
+}
+
+* {
+    text-align: center;
+}
+
+.originText, .translatedText, .originLanguage, .languageTranslatedTo {
+    border: var(--column-border);
+    text-align: left;
+}
+
+.originText {
+    background: #4ABDAC;
+}
+
+.translatedText {
+    background: #FC4A1A;
+}
+
+.originLanguage {
+    background: #F7B733;
+}
+
+.languageTranslatedTo {
+    background: #DFDCE3;
+}
