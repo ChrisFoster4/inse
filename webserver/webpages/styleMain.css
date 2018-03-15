@@ -82,7 +82,7 @@ aside > #lower {
 	background: -webkit-linear-gradient(left, #3a8fff 0%, #ffffff 5%,#ffffff 25%, #ffffff 50%, #ffffff 80%,#ffffff 95%, #3a8fff 100%); /* Chrome10-25,Safari5.1-6 */
 	background: linear-gradient(to right, #3a8fff 0%, #ffffff 5%,#ffffff 25%, #ffffff 50%, #ffffff 80%,#ffffff 95%, #3a8fff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3a8fff', endColorstr='#3a8fff',GradientType=1 ); /* IE6-9 */  font-family: "Arial", sans-serif;
 
-	
+
   }
   nav {
     text-align: center;
@@ -143,4 +143,8 @@ aside > #lower {
     aside > p {
       margin-top: 3em;
     }
+}
+
+#logOutButton, #previousTranslationsButton{
+    visibility: hidden;
 }
