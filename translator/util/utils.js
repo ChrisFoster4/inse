@@ -1,7 +1,7 @@
 'use strict'
 //TODO comment describe below function
 function userLanguageToISO_Code(inputString) {
-    /* Languages we included  in our SRS questionaire
+    /** Languages we included  in our SRS questionaire
      English,French,German,Spanish,Italian,Portugese,
      Dutch,Swedish,Norwegian,Polish,Russian,Greek,Arabic,Mandarin Chinese, Japanese
 
@@ -41,7 +41,7 @@ function userLanguageToISO_Code(inputString) {
         case "Japanese":
             return "ja";
         case "Mandarin Chinese":
-            return "zh-cn"; //ISO code according to https://en.wikipedia.org/wiki/Mandarin_Chinese
+            return "zh-CN"; //ISO code according to https://en.wikipedia.org/wiki/Mandarin_Chinese
         case "auto":
             return ""; //No language entered. Autodetecting language
         default: // This should NEVER be reached as the input is from a drop down list
@@ -52,7 +52,7 @@ function userLanguageToISO_Code(inputString) {
 }
 module.exports.userLanguageToISO_Code = userLanguageToISO_Code;
 
-/*
+/**
 This function is needed as when the language is autodetect to Google translate API
 returns an ISO code(e.g. "es") not a human langage (e.g. "Spanish").
 This is the inverse of the userLanguageToISO_Code function.
@@ -89,7 +89,7 @@ function isoCodeToHumanLanguage(isoCode) {
             return "Arabic";
         case "ja":
             return "Japanese"
-        case "zh-cn":
+        case "zh-CN":
             return "Mandarin Chinese"
         default:
             console.log("ERROR code : utils.js02 :  Google API returned an unrecgonised ISO code" + isoCode);

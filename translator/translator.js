@@ -2,14 +2,14 @@
 const translate = require('google-translate-api'); //npmjs.com page for this module https://www.npmjs.com/package/google-translate-api
 const utilities = require("./util/utils.js"); //A file containing some helper function for translatingText
 
-/*
+/**
   This function (translateText) should translate the passed text using the google translate api by turning the target/origin language to their corresponding ISO codes.
   The translated text can then be passed back to the server. Errors when no text is passed and on unexpected errors during translation
 
- *@params textToTranslate the string of text the user is trying to translate
- *@params originLanguage the language the text should be translated from - optional as google translate API can auto detect the language
- *@params targetLanguage the language the text should be translated to - Should be selected by the user from a dropdown on the webpage.
- *@return toReturn the translated text obtained from the translate function from google api
+ @params textToTranslate the string of text the user is trying to translate
+ @params originLanguage the language the text should be translated from - optional as google translate API can auto detect the language
+ @params targetLanguage the language the text should be translated to - Should be selected by the user from a dropdown on the webpage.
+ @return toReturn the translated text obtained from the translate function from google api
 
  */
 async function translateText(textToTranslate, targetLanguage, originLanguage) {
@@ -17,7 +17,8 @@ async function translateText(textToTranslate, targetLanguage, originLanguage) {
     let toReturn = {text : placeHolderResponse,
                     originLanguage: "auto",
                     targetLanguage: "auto"
-                    }
+                };
+
 
     // get the target/origin languages corresponding ISO codes
     targetLanguage = utilities.userLanguageToISO_Code(targetLanguage);
@@ -28,7 +29,7 @@ async function translateText(textToTranslate, targetLanguage, originLanguage) {
             to: targetLanguage
         }).then(res => {
             let targetLanguage = (res.from.language.iso);
-            toReturn.originLanguage = targetLanguage;
+            toReturn.originLanguage = utilities.isoCodeToHumanLanguage(targetLanguage);
             toReturn.text = res.text;
             return toReturn;
         }).catch(err => {
