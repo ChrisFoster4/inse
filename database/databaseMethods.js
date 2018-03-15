@@ -44,7 +44,21 @@ async function addTranslation(userID, originLanguage, targetLanguage, originText
     });
     await sql.query(insertquery);
 }
+
 module.exports.addTranslation = addTranslation;
+
+
+// Used to delete testTranslations
+
+async function removeUsersTranslations(userID) {
+    const sql = await init();
+    const insertquery = sql.format('DELETE FROM Translation WHERE ? ;', {
+        userID: userID
+    });
+    await sql.query(insertquery);
+}
+
+module.exports.removeUsersTranslations = removeUsersTranslations;
 
 /**
  This function (viewAllTranslations) should return ALL translationss that the user has done regardless of if they are marked as favourites or not.
