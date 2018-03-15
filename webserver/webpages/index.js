@@ -1,5 +1,6 @@
 //Binding HTML buttons to their appropriate JavaScript functions
 document.getElementById('translateButton').addEventListener('click', submitTextToTranslate);
+document.getElementById('logOutButton').addEventListener('click', signOut);
 // document.getElementById('logoutButton').addEventListener('click', signOut);
 
 /**
@@ -110,6 +111,9 @@ function onSignIn(googleUser) {
     // console.log('Name: ' + profile.getName());
     // console.log('Image URL: ' + profile.getImageUrl());
     // console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+
+    document.getElementById('logOutButton').style.visibility = "visible";
+    document.getElementById('previousTranslationsButton').style.visibility = "visible";
 }
 
 /**
@@ -123,6 +127,11 @@ async function signOut() {
         console.log('User signed out.');
         callServer();
     });
+    //Make logout button invisilbe
+    //Make previos translation button invisible
+    document.getElementById('logOutButton').style.visibility = "hidden";
+    document.getElementById('previousTranslationsButton').style.visibility = "hidden";
+
 }
 
 //Bellow two functions are from the manual for the simple-google-openid package avaliable at: //https://www.npmjs.com/package/simple-google-openid
