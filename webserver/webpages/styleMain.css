@@ -73,7 +73,7 @@ aside > #lower {
   margin-top: 10em;
 }
 
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 1000px) {
   body {
     width: 100%;
     min-width: 400px;
