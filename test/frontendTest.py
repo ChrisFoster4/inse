@@ -27,7 +27,7 @@ def programLoad():
 
 def inputText():
     write("Hello")
-    if TextField("#inputArea").value == "Hello":
+    if Text("Hello").exists(): #
         print("-inputText passed!")
     else:
         print("-inputText failed!")
