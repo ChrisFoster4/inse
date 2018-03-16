@@ -37,5 +37,7 @@ localhost:8080/main.html
 ```
 Ensure you have cookies enabled and no browser extensions which may block the Google Authentication(Such as certain adblocks) and enjoy.
 
-
-
+To run the automated tests run:
+```
+npm test
+```
