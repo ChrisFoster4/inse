@@ -1,0 +1,49 @@
+npm test
+
+> inse@1.0.0 test /home/cflaptop/myPrograms/git/inse
+> mocha --exit
+
+Database methods successfully imported.
+
+
+easyTranslate server now running.
+  Test DB insertions
+Connection to database made.
+    ✓ Inserts test user into DB
+    ✓ Tests all records have been deleted, remove translations works
+
+  Test Translations
+ERROR code : server.js03 : user not signed in. Not saving translation
+    ✓ Languages selected: responds with a JSON and status 200 (383ms)
+ERROR code : server.js03 : user not signed in. Not saving translation
+    ✓ Favourite Translation, Languages selected: responds with a JSON and status 200 (247ms)
+ERROR code : server.js03 : user not signed in. Not saving translation
+    ✓ Languages auto detected: responds with a JSON and status 200 (258ms)
+ERROR code : server.js03 : user not signed in. Not saving translation
+    ✓ Favourite Translation, Languages auto detected: responds with a JSON and status 200 (269ms)
+
+  Previous Translations
+TypeError: Cannot read property 'id' of undefined
+    at /home/cflaptop/myPrograms/git/inse/webserver/server.js:93:31
+    at Layer.handle [as handle_request] (/home/cflaptop/myPrograms/git/inse/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/cflaptop/myPrograms/git/inse/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/home/cflaptop/myPrograms/git/inse/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/home/cflaptop/myPrograms/git/inse/node_modules/express/lib/router/layer.js:95:5)
+    at /home/cflaptop/myPrograms/git/inse/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/home/cflaptop/myPrograms/git/inse/node_modules/express/lib/router/index.js:335:12)
+    at next (/home/cflaptop/myPrograms/git/inse/node_modules/express/lib/router/index.js:275:10)
+    at SendStream.error (/home/cflaptop/myPrograms/git/inse/node_modules/serve-static/index.js:121:7)
+    at emitOne (events.js:116:13)
+    at SendStream.emit (events.js:211:7)
+    at SendStream.error (/home/cflaptop/myPrograms/git/inse/node_modules/send/index.js:270:17)
+    at SendStream.onStatError (/home/cflaptop/myPrograms/git/inse/node_modules/send/index.js:421:12)
+    at next (/home/cflaptop/myPrograms/git/inse/node_modules/send/index.js:736:16)
+    at /home/cflaptop/myPrograms/git/inse/node_modules/send/index.js:744:23
+    at FSReqWrap.oncomplete (fs.js:152:21)
+    ✓ Get previous translations: Fails and reponse with error 404, user not signed it
+    ✓ View user details: Not authorized as user is not logged in
+
+
+  8 passing (1s)
+
+$:
