@@ -54,7 +54,7 @@ def submitTranslation():
         print("-submitTranslation failed!")
 
 def main():
-    start_chrome("http://127.0.0.1:8000")
+    start_chrome("http://localhost:8080/")
     delay(1000)
     programLoad()
     delay(100)
@@ -65,6 +65,6 @@ def main():
     changeOutputLang()
     delay(100)
     submitTranslation()
-    print("END")
+    print("END OF TESTS")
 
 main()
