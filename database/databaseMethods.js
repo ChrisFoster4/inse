@@ -1,6 +1,5 @@
 //Importing required libraries
 const mysql = require('mysql2/promise');
-const sha256 = require('sha256');
 
 const config = require('./config.json'); //Pull in a file containing the database name, host of the database, username to use and the password to use.
 
@@ -12,7 +11,7 @@ async function connectionTester() {
     try {
         const sql = await init();
     } catch (e) {
-        console.log("ERROR code : databaseMethods.js01 : Could not connect to database. Exiting program now.Error:"+e);
+        console.error("ERROR code : databaseMethods.js01 : Could not connect to database. Exiting program now.Error:"+e);
         process.exit(1);
     }
 }
@@ -31,7 +30,7 @@ async function addTranslation(userID, originLanguage, targetLanguage, originText
     if (isFavourite == "true") isFavourite = 1;
     if (isFavourite == "false") isFavourite = 0;
     if (isFavourite != 1 && isFavourite != 0) { //If isFavourite is "True" or "False" MySQL will count this as False.
-        console.log("ERROR code : databaseMethods.js02 : Non Boolean passed to addTranslation in \"isFavourite\" parameter:" + isFavourite + ".Not adding translation.");
+        console.error("ERROR code : databaseMethods.js02 : Non Boolean passed to addTranslation in \"isFavourite\" parameter:" + isFavourite + ".Not adding translation.");
         return 1; //Non 0 exit code to indicate function failed.
     }
     const sql = await init();
@@ -45,68 +44,21 @@ async function addTranslation(userID, originLanguage, targetLanguage, originText
     });
     await sql.query(insertquery);
 }
+
 module.exports.addTranslation = addTranslation;
 
-/**
- This function (addUser) should insert a new user into the database.  Before inserting the user into the database their password should be hashed so that the password isn't stored in plain text.An error should be returned if a user already exists with that ID
- To to perform the hashing we are using the 'sha256' node package.
- @params userID the identification of the newly created user.
- @params fName the users first name. Useful to store so the website can greet them using their name.
- @params password the password the user entered into the web form. This is hashed AFTER being passed to the function do NOT pass the hashed version.
- @params nativeLanguage the native language the user selected from a dropdown of options. This affects which language the system will try to translate from if they do not tell the system which language to translate from.
- TODO force certain criteria of the password e.g. > 8 characters long?
- TODO Should we be hashing before the password is sent over the internet so it can't be packet sniffed?
- TODO return a nice error if the user already exists
- */
-async function addUser(userID, fName, password, nativeLanguage) {
+
+// Used to delete testTranslations
+
+async function removeUsersTranslations(userID) {
     const sql = await init();
-    let hashedPassword = sha256(password);
-    const insertquery = sql.format('insert into User  set ? ;', {
-        userID: userID,
-        fName: fName,
-        password: hashedPassword,
-        nativeLanguage: nativeLanguage
+    const insertquery = sql.format('DELETE FROM Translation WHERE ? ;', {
+        userID: userID
     });
-    try {
-        await sql.query(insertquery);
-    } catch (e) {
-        console.log("ERROR code : databaseMethods.js05 : Error adding user.User may already exist in the database.user: "+userID);
-    }
+    await sql.query(insertquery);
 }
 
-/**
- This function (retrieveLoginData) would return the hashed password for the given account so it can be checked against the password that the user is trying to sign in using.Errors should be raised if multiple accounts are found with the same ID or if there is no account found with the given ID.
- @params userID the username of the account that is trying to be accessed
- @return Either the hashed password as a string or an appropriate error message
- TODO surely given the user enters their email to signin not a userID their email should be passed. This would require us to store their email in the database hence changing the Tables.sql file.
- TODO Handle errors more elegantly than returning an error message as this relies on the calling function to expect a specific error string.Potentially use break statements
-*/
-async function retrieveHashedPassword(userID) {
-    const sql = await init();
-    const query = sql.format(`select password from User where userID = ?`, userID);
-    const [resultOfQuery] = await sql.query(query);
-    if (resultOfQuery.length > 1) {
-        console.log("ERROR code : databaseMethods.js03 : multiple accounts found with same usedID"); //This should NEVER happen but should still be protected against
-        return "ERROR code : databaseMethods.js03 : multiple accounts found with same usedID";
-    }
-    if (resultOfQuery.length == 0) {
-        console.log("ERROR code : databaseMethods.js04 : no password found with userID: " + userID);
-        return ("ERROR code : databaseMethods.js04 : no password found with userID: " + userID);
-    }
-    return (resultOfQuery[0].password);
-}
-
-/**
- This function (viewNonFavouriteTranslations) should return ALL translations that the given user has done that they HAVE NOTmarked as favourites.
- @params userID the username of the account that is trying to be accessed
- @return This should return an array where each row that matches the SQL query is an element in the array.
-*/
-async function viewNonFavouriteTranslations(userID) {
-    const sql = await init();
-    const query = sql.format(`select originLanguage,targetLanguage,originText,targetText from Translation where isFavourite = false and userID = ?`, userID);
-    const [resultOfQuery] = await sql.query(query);
-    return resultOfQuery;
-}
+module.exports.removeUsersTranslations = removeUsersTranslations;
 
 /**
  This function (viewAllTranslations) should return ALL translationss that the user has done regardless of if they are marked as favourites or not.
@@ -117,43 +69,10 @@ async function viewAllTranslations(userID) {
     const sql = await init();
     const query = sql.format(`select originLanguage,targetLanguage,originText,targetText,isFavourite from Translation where userID = ?`, userID);
     const [resultOfQuery] = await sql.query(query);
-    console.log(resultOfQuery[0]);
     return resultOfQuery;
 }
 module.exports.viewAllTranslations = viewAllTranslations;
 
-/**
- This function (viewNonFavouriteTranslations) should return ALL translations that the given user has done that they HAVE marked as favourites.
- @params userID the username of the account that is trying to be accessed
- @return This should return an array where each row that matches the SQL query is an element in the array.
-*/
-async function viewFavouriteTranslations(userID) {
-    const sql = await init();
-    const query = sql.format(`select originLanguage,targetLanguage,originText,targetText from Translation where isFavourite = true and userID = ?`, userID);
-    const [resultOfQuery] = await sql.query(query);
-    return resultOfQuery;
-}
-
-/**
- This function (retrieveNativeLanguage) gets a users native language from the database.Errors should be thrown if no native language is found or multiple native languages are found.
- @params userID the username of the account that is trying to be accessed
- @return The users native language as a string
-*/
-async function retrieveNativeLanguage(userID) {
-    const sql = await init();
-    const query = sql.format(`select nativeLanguage from User where userID = ?`, userID);
-    const [resultOfQuery] = await sql.query(query);
-    if (resultOfQuery.length == 0){
-        console.log("ERROR code : databaseMethods.js06 : No nativeLanguage found for userID: "+ userID);
-        return ("ERROR code : databaseMethods.js06 : No nativeLanguage found for userID: "+ userID);
-    }
-    if (resultOfQuery.length > 1){
-        console.log("ERROR code : databaseMethods.js07 : More than one native language found for userID: "+userID);
-        return ("ERROR code : databaseMethods.js07 : More than one native language found for userID: "+userID);
-    }
-    let nativeLanguage = resultOfQuery[0].nativeLanguage;
-    return nativeLanguage;
-}
 
 //Boilerplate code for MySQL connections
 

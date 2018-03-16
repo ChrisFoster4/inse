@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<head>
+<title>easyTranslate</title>
+<meta charset="UTF-8">
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="home.css" />
+<link href="https://fonts.googleapis.com/css?family=Maven+Pro|Nunito" rel="stylesheet">
+<meta name="google-signin-client_id" content="699486973238-qtkkm8tofnsnhidhvnhjm26efnvgs107.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+
+<body class="easyT">
+
+  <header  class="easyT_Header">
+    <h1>EasyTranslate</h1>
+  </header>
+
+ <aside class="easyT_Left">
+   <div class="g-signin2" data-onsuccess="onSignIn"></div>
+   <div class="form"><button hidden id="logOutButton" type="button">Log Out</button></div>
+   <button hidden id="previousTranslationsButton" onclick="location.href='previousTranslations.html'" type="button"> Previous Translations </button>
+</aside>
+
+    <main class="easyT_Main">
+      <form class= "main_Form">
+        <p class="input">Input Language:</p>
+        <p class="output">Output Language:</p>
+        <p class="input_Text">Input Text:</p>
+        <p class="output_Text">Output Text:</p>
+          <select id="originLang">
+            <option disabled value = "0"> Select Language: </option>
+            <option value = "1">Auto Detect</option>
+            <option value = "2">English</option>
+            <option value = "3">French</option>
+            <option value = "4">German</option>
+            <option value = "5">Spanish</option>
+            <option value = "6">Italian</option>
+            <option value = "7">Portugese</option>
+            <option value = "8">Dutch</option>
+            <option value = "9">Swedish</option>
+            <option value = "10">Norwegian</option>
+            <option value = "11">Polish</option>
+            <option value = "12">Russian</option>
+            <option value = "13">Greek</option>
+            <option value = "14">Arabic</option>
+            <option value = "15">Mandarin Chinese</option>
+          </select>
+
+
+          <select id="targetLang">
+            <option disabled value = "0"> Select Language: </option>
+            <option value = "1">Auto Detect</option>
+            <option value = "2">English</option>
+            <option value = "3">French</option>
+            <option value = "4">German</option>
+            <option value = "5">Spanish</option>
+            <option value = "6">Italian</option>
+            <option value = "7">Portugese</option>
+            <option value = "8">Dutch</option>
+            <option value = "9">Swedish</option>
+            <option value = "10">Norwegian</option>
+            <option value = "11">Polish</option>
+            <option value = "12">Russian</option>
+            <option value = "13">Greek</option>
+            <option value = "14">Arabic</option>
+            <option value = "15">Mandarin Chinese</option>
+          </select>
+
+          <textarea id="inputArea" placeholder="Text to translate"></textarea>
+          <textarea readonly id="outputArea" placeholder="Translated text"></textarea>
+
+          <button id="translateButton" type="button"> Translate </button>
+
+          <label id="isFavourite">Save as favourite
+            <input type="checkbox"> </input>
+            <span class="checkmark"></span>
+          </label>
+
+        </form>
+
+    </main>
+
+  </body>
+</html>
+
+
+<script src="index.js"></script>

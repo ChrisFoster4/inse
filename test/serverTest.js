@@ -11,7 +11,7 @@ describe('Test Translations', function() {
     chai.request(app)
       .get('/webserver/translateText?text=hello&languageToTranslateTo=German&languageToTranslateFrom=English&isFavourite=False')
       .end(function(err, res) {
-        expect(res).to.be.json.and.have.status(200);
+        expect(res).to.be.json.and.to.include({"text": '{"translatedText":"Hallo","languageTranslatedFrom":"English","languageTranslatedTo":"German"}' }).and.have.status(200);
         done();
         });
     });
@@ -19,7 +19,7 @@ describe('Test Translations', function() {
     chai.request(app)
       .get('/webserver/translateText?text=hello&languageToTranslateTo=German&languageToTranslateFrom=English&isFavourite=True')
       .end(function(err, res) {
-        expect(res).to.be.json.and.have.status(200);
+        expect(res).to.be.json.and.to.include({"text": '{"translatedText":"Hallo","languageTranslatedFrom":"English","languageTranslatedTo":"German"}' }).and.have.status(200);
         done();
           });
       });
@@ -27,7 +27,7 @@ describe('Test Translations', function() {
     chai.request(app)
       .get('/webserver/translateText?text=hallo meine Freunde&languageToTranslateTo=auto&languageToTranslateFrom=auto&isFavourite=False')
       .end(function(err, res) {
-        expect(res).to.be.json.and.have.status(200);
+        expect(res).to.be.json.and.to.include({"text": '{"translatedText":"Hello my friends","languageTranslatedFrom":"German","languageTranslatedTo":"English"}' }).and.have.status(200);
         done();
         });
       });
@@ -35,7 +35,7 @@ describe('Test Translations', function() {
     chai.request(app)
       .get('/webserver/translateText?text=hallo meine Freunde&languageToTranslateTo=auto&languageToTranslateFrom=auto&isFavourite=True')
       .end(function(err, res) {
-        expect(res).to.be.json.and.have.status(200);
+        expect(res).to.be.json.and.to.include({"text": '{"translatedText":"Hello my friends","languageTranslatedFrom":"German","languageTranslatedTo":"English"}' }).and.have.status(200);
         done();
         });
       });
