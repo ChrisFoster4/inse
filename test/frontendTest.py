@@ -55,15 +55,15 @@ def submitTranslation():
 
 def main():
     start_chrome("http://localhost:8080/")
-    delay(1000)
+    delay(1)
     programLoad()
-    delay(100)
+    delay(1)
     inputText()
-    delay(100)
+    delay(1)
     changeInputLang()
-    delay(100)
+    delay(1)
     changeOutputLang()
-    delay(100)
+    delay(1)
     submitTranslation()
     print("END OF TESTS")
 
